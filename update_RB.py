@@ -36,7 +36,7 @@ def update_RB_file(user, passw, new_boundary, token, timestamp):
             f.writelines(Get_RB_string(user, passw, new_boundary, token, timestamp))
         except:
             print("Insert the right types in the right order: User(str), Passw(str), boundary(int/str), token(str),timestamp(int/str)")
-    return "./try"
+    return "./temp_body"
 
 
 #update_RB_file("Tony","98798789","868768768","86868dyashfh",9876867865)
