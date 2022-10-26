@@ -4,7 +4,7 @@ import random
 
 ## Boundaries can change but total lenght stays the same
 
-boundary = ""
+#boundary = ""
 
 class file_RB:
     def __init__(self):
@@ -22,8 +22,8 @@ def randN(N):
 
 def set_boundary():
     s_newB = str(randN(random.randrange(10,40)))
+    global boundary 
     boundary = (58-len(s_newB))*"-" + s_newB
-    return boundary
 
 def get_boundary():
     return boundary
@@ -46,5 +46,5 @@ def update_RB_file(user, passw, token, timestamp):
 
 
 print(set_boundary())
-print(boundary)
-print(update_RB_file("Tony", "1", "1", "1"))
+print(get_boundary())
+update_RB_file("Tony", "1", "1", "1")
