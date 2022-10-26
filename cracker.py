@@ -1,5 +1,5 @@
 import requests
-from update_RB.py import update_RB_file, get_boundary
+from update_RB.py import update_RB_file, get_boundary, set_boundary()
 
 ####################################
 ### ----- GET SESSION DATA ----- ###
@@ -18,10 +18,11 @@ token = x[7]
 ### ------ BUILD REQUEST ------ ###
 ###################################
 url = "http://www.seed-server.com/action/login"
+boundary = str(set_boundary())
 headers = {
 "X-Elgg-Ajax-API": "2",
 "X-Requested-With": "XMLHttpRequest",
-"Content-Type": "multipart/form-data; boundary=%s"%get_boundary(),
+"Content-Type": "multipart/form-data; boundary=%s"%boundary,
 "Cookie": f"{cookie}"
 }
 ### --------------------------- ###
