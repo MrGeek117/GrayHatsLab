@@ -4,7 +4,6 @@ import random
 
 ## Boundaries can change but total lenght stays the same
 
-#boundary = ""
 
 class file_RB:
     def __init__(self):
