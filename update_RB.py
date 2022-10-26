@@ -23,8 +23,6 @@ def set_boundary():
     s_newB = str(randN(random.randrange(10,40)))
     global boundary 
     boundary = (58-len(s_newB))*"-" + s_newB
-
-def get_boundary():
     return boundary
 
 def Get_RB_string(user, passw, token, timestamp):
