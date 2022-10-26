@@ -1,7 +1,5 @@
 import requests
-
-#f = open("/home/c4ll3/elgg-testing/login_cracker/request_body", "r")
-#data = f.read()
+from update_RB.py import update_RB_file, get_boundary
 
 ####################################
 ### ----- GET SESSION DATA ----- ###
@@ -23,7 +21,7 @@ url = "http://www.seed-server.com/action/login"
 headers = {
 "X-Elgg-Ajax-API": "2",
 "X-Requested-With": "XMLHttpRequest",
-"Content-Type": "multipart/form-data; boundary=---------------------------335837917637707572332315839054",
+"Content-Type": "multipart/form-data; boundary=%s"%get_boundary(),
 "Cookie": f"{cookie}"
 }
 ### --------------------------- ###
@@ -31,8 +29,10 @@ headers = {
 ###################################
 ### ------- POST REQUEST ------ ###
 ###################################
-#l = s.post(url, headers = headers, data = data)
-#print(l)
-#print(l.text)
+
+
+l = s.post(url, headers = headers, data = update_RB_file("User","Password", token, ts))
+print(l)
+print(l.text)
 ### --------------------------- ###
 # ------------------------------- #
