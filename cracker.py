@@ -22,7 +22,7 @@ boundary = str(set_boundary())
 headers = {
 "X-Elgg-Ajax-API": "2",
 "X-Requested-With": "XMLHttpRequest",
-"Content-Type": "multipart/form-data; boundary=\f"{boundary}",
+"Content-Type": "multipart/form-data; boundary=%s"%boundary,
 "Cookie": f"{cookie}"
 }
 ### --------------------------- ###
