@@ -4,6 +4,8 @@ import random
 
 ## Boundaries can change but total lenght stays the same
 
+boundary = ""
+
 class file_RB:
     def __init__(self):
         self.token_line = 'Content-Disposition: form-data; name="__elgg_token"'
@@ -11,10 +13,6 @@ class file_RB:
 
         self.user_line = 'Content-Disposition: form-data; name="username"'
         self.pass_line = 'Content-Disposition: form-data; name="password"'
-    self
-
-
-
 
 def randN(N):
 	min = pow(10, N-1)
@@ -22,15 +20,16 @@ def randN(N):
 	return random.randint(min, max)
 
 
-def Set_boundary():
+def set_boundary():
     s_newB = str(randN(random.randrange(10,40)))
-    boundary =  ""
     boundary = (58-len(s_newB))*"-" + s_newB
+    return boundary
+
+def get_boundary():
     return boundary
 
 def Get_RB_string(user, passw, token, timestamp):
     default = file_RB()
-    boundary = Set_boundary()    
     RB_string = boundary+"\n"+ default.token_line+"\n\n"+token+"\n"+boundary+"\n"+default.timeS_line+"\n\n"+str(timestamp)+"\n"+boundary+"\n"+default.user_line+"\n\n"+user+"\n"+str(boundary)+"\n"+default.pass_line+"\n\n"+passw+"\n"+boundary+"--"
     return RB_string
 
@@ -46,6 +45,6 @@ def update_RB_file(user, passw, token, timestamp):
     return "./temp_body"
 
 
-#update_RB_file("Tony","98798789","868768768","9876867865")
-
-
+print(set_boundary())
+print(boundary)
+print(update_RB_file("Tony", "1", "1", "1"))
