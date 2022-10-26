@@ -1,5 +1,5 @@
 import requests
-from update_RB.py import update_RB_file, set_boundary
+from update_RB import update_RB_file, set_boundary
 
 ####################################
 ### ----- GET SESSION DATA ----- ###
