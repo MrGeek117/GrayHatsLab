@@ -4,7 +4,7 @@ from time import monotonic
 
 def main():
     SessionData = Session()
-    bruteforce(SessionData,5,False)
+    bruteforce(SessionData,6,False)
     
 
 
@@ -24,5 +24,3 @@ def timer(s):
     while (s>=0):
         print(int(monotonic()-time))
         #passed += monotonic()
-
-
