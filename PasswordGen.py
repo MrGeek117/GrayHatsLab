@@ -11,7 +11,8 @@ def bruteforce(SessionData, maxlength, HasSpecialCH=False):
         for candidate in chain.from_iterable(product(printable+(special_c*HasSpecialCH), repeat=i) for i in range(1, maxlength + 1)):
             password = "".join(candidate)
             if PostRequest(SessionData, password):
-                print("Password Found!:"+password)
+                print("Password found!: "+password)
+                break
             else:
-                print("Failed using:"+password)
+                print("Failed using: "+password)
      
