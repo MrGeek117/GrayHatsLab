@@ -56,11 +56,11 @@ def PostRequest(SessionData, password):
             print("Too many duplicate entries, quitting...")
             os._exit(0)
         else:
-            print("Duplicate entry, retrying...")
+            # print("Duplicate entry, retrying...")
             PostRequest(SessionData, password)
             de_counter += 1
     else:
-        print("Unknown error")
+        # print("Unknown error")
         ue_counter += 1
         if ue_counter > 10:
             print("Too many unknown errors, quitting...")
