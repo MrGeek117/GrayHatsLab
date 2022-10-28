@@ -1,0 +1,13 @@
+flush ruleset
+
+table ip firewall {
+
+	chain elgg {
+
+		type filter hook output priority 0; policy accept;
+
+		tcp dport 80 limit rate over 100/minute drop
+
+	}
+
+}
