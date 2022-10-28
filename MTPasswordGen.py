@@ -1,6 +1,7 @@
 import os
 import string
-from SendPostForm import PostRequest, Session
+from time import sleep
+from SendPostForm import Session, SetUsername, PostRequest
 from itertools import chain, product
 from queue import Queue
 from threading import Thread
@@ -35,6 +36,8 @@ def bruteforce():
 
 
 if __name__ == '__main__':
+
+    SetUsername(str(input("Enter username: ")))
 
     for t in range(NUM_THREADS):
         Thread(target = bruteforce, daemon = True).start()

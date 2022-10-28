@@ -2,7 +2,6 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
-
 ### ----- GET SESSION DATA OBJ ----- ###
 
 class Session:
@@ -12,7 +11,12 @@ class Session:
         self.soup = BeautifulSoup(self.request.text, 'html.parser')
         self.ts = self.soup.body.script.contents[0][643:653]
         self.token = self.soup.body.script.contents[0][670:692]
-        
+
+def SetUsername(_username):
+
+    global username
+    username = _username
+
 
 def PostRequest(SessionData, password):
 
@@ -25,7 +29,7 @@ def PostRequest(SessionData, password):
     l = SessionData.session.get(url, params = {
         "__elgg_token": SessionData.token,
         "__elgg_ts": SessionData.ts,
-        "username": "alice",
+        "username": username,
         "password": password
         })
 
@@ -48,11 +52,13 @@ def PostRequest(SessionData, password):
         os._exit(0)
 
     elif "Duplicate entry" in log_in_mess:
-        print("Duplicate entry.")
-        de_counter += 1
-        if de_counter > 10:
+        if de_counter > 100:
             print("Too many duplicate entries, quitting...")
             os._exit(0)
+        else:
+            print("Duplicate entry, retrying...")
+            PostRequest(SessionData, password)
+            de_counter += 1
     else:
         print("Unknown error")
         ue_counter += 1
