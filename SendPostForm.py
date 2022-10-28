@@ -1,8 +1,10 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 
 
 ### ----- GET SESSION DATA OBJ ----- ###
+
 class Session:
     def __init__(self):
         self.session = requests.Session()
@@ -13,8 +15,9 @@ class Session:
         
 
 def PostRequest(SessionData, password):
-    #SessionData = Session() ##Remove it and construct the Session Data outside
+
 ### ------ BUILD REQUEST ------ ###
+
     url = "http://www.seed-server.com/action/login"
 
 ### ------- POST REQUEST ------ ###
@@ -25,16 +28,36 @@ def PostRequest(SessionData, password):
         "username": "alice",
         "password": password
         })
+
+### ----- HANDLE RESPONSE ----- ###
     
     nsoup = BeautifulSoup(l.text, 'html.parser')
     log_in_mess = nsoup.body.find('div', 'elgg-body').get_text()
+
+    de_counter = 0
+    ue_counter = 0
+
     if log_in_mess == "You have been logged in.":
-        print("Successfull")
         return True
+        
     elif log_in_mess == "We could not log you in. Please check your username/email and password.":
-        print("Unsuccessfull")
         return False
+
+    elif log_in_mess == "Your account has been locked for too many log in failures.":
+        print("Account locked, retry later...")
+        os._exit(0)
+
+    elif "Duplicate entry" in log_in_mess:
+        print("Duplicate entry.")
+        de_counter += 1
+        if de_counter > 10:
+            print("Too many duplicate entries, quitting...")
+            os._exit(0)
     else:
-        print("WTF. This is unexpected...")
+        print("Unknown error")
+        ue_counter += 1
+        if ue_counter > 10:
+            print("Too many unknown errors, quitting...")
+            os._exit(0)
 
 ### --------------------------- ###
