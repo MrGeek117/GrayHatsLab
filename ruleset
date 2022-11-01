@@ -10,4 +10,12 @@ table ip firewall {
 
 	}
 
+	chain ssh {
+
+		type filter hook input priority 0; policy accept;
+
+		tcp dport 22 limit rate over 10/minute drop
+
+	}
+
 }
